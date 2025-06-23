@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f9f9f9;
+      --text: #333;
+      --primary: #111;
+      --secondary: #1e293b;
+      --accent: #facc15;
+    }
+    body.dark {
+      --bg: #0f172a;
+      --text: #f9f9f9;
+      --primary: #f9f9f9;
+      --secondary: #334155;
+      --accent: #facc15;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      scroll-behavior: smooth;
+      transition: background 0.3s, color 0.3s;
+    }
+    #preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: black;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #preloader video {
+      width: 200px;
+      height: auto;
+      max-width: 90%;
+      border-radius: 12px;
+    }
+    #bg-audio {
+      display: none;
+    }
+    header {
+      background: var(--primary);
+      color: white;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    header h1 {
+      font-size: 1.5rem;
+    }
+    .menu-toggle {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    nav {
+      display: flex;
+      gap: 1rem;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    nav a:hover {
+      color: var(--accent);
+    }
+    .toggle-darkmode {
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      font-size: 1.3rem;
+      color: var(--accent);
+    }
+    .hero {
+      padding: 4rem 2rem;
+      text-align: center;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+    }
+    .hero h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1rem;
+      max-width: 600px;
+      margin: 0 auto 1rem;
+    }
+    .cv-button {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.6rem 1.2rem;
+      background: var(--accent);
+      color: black;
+      border-radius: 6px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    section {
+      padding: 3rem 1.5rem;
+      max-width: 1000px;
+      margin: auto;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    section.reveal {
+      opacity: 1;
+      transform: none;
+    }
+    section.fade-left {
+      transform: translateX(-30px);
+    }
+    section.fade-right {
+      transform: translateX(30px);
+    }
+    section.reveal.fade-left,
+    section.reveal.fade-right {
+      transform: none;
+    }
+    section h2 {
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    .projects {
+      display: grid;
+      gap: 2rem;
+    }
+    .project-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 0.75rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    .contact {
+      background: var(--secondary);
+      color: white;
+      text-align: center;
+      padding: 2rem;
+      border-radius: 0.75rem;
+    }
+    .contact a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    form {
+      margin-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    input, textarea {
+      padding: 0.75rem;
+      border: none;
+      border-radius: 5px;
+      width: 100%;
+    }
+    button {
+      padding: 0.75rem;
+      background: var(--accent);
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.9rem;
+      color: #888;
+    }
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+        flex-direction: column;
+        background: var(--primary);
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        padding: 1rem 0;
+      }
+      nav.active {
+        display: flex;
+      }
+      .menu-toggle {
+        display: inline-block;
+        color: white;
+      }
+    }
+    @media (min-width: 768px) {
+      .hero h2 {
+        font-size: 2.5rem;
+      }
+      .projects {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="preloader">
+    <video autoplay muted id="preloaderVideo"></video>
+  </div>
+  <audio id="bg-audio" loop>
+    <source src="background.mp3" type="audio/mpeg">
+  </audio>
+  <header>
+    <h1>My Portfolio</h1>
+    <div>
+      <button class="toggle-darkmode" onclick="toggleDarkMode()" title="Toggle dark mode" id="themeToggle"></button>
+      <span class="menu-toggle" onclick="toggleMenu()"></span>
+    </div>
+    <nav id="navMenu">
+      <a href="#about" onclick="closeMenu()">About</a>
+      <a href="#projects" onclick="closeMenu()">Projects</a>
+      <a href="#contact" onclick="closeMenu()">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2>Hello, I'm [Your Name]</h2>
+    <p>A passionate developer/designer building beautiful and functional web experiences.</p>
+    <a href="cv.pdf" class="cv-button" download> Download CV</a>
+  </section>
+
+  <section id="about" class="fade-left">
+    <h2>About Me</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris at quam ac tellus placerat pretium. Integer nec odio vel elit feugiat viverra.</p>
+  </section>
+
+  <section id="projects" class="fade-right">
+    <h2>Projects</h2>
+    <div class="projects">
+      <div class="project-card">
+        <h3>Project One</h3>
+        <p>Brief description of the first project goes here.</p>
+        <a href="#">View Project</a>
+      </div>
+      <div class="project-card">
+        <h3>Project Two</h3>
+        <p>Brief description of the second project goes here.</p>
+        <a href="#">View Project</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact fade-left">
+    <h2>Contact Me</h2>
+    <p>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
+    <p>GitHub: <a href="#">github.com/yourusername</a></p>
+    <form action="https://formspree.io/f/your-form-id" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" required />
+      <textarea name="message" rows="4" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Your Name. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('navMenu').classList.toggle('active');
+    }
+    function closeMenu() {
+      document.getElementById('navMenu').classList.remove('active');
+    }
+
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark');
+      const icon = document.getElementById('themeToggle');
+      icon.textContent = document.body.classList.contains('dark') ? '' : '';
+      localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark') {
+        document.body.classList.add('dark');
+        document.getElementById('themeToggle').textContent = '';
+      }
+
+      const preloaderVideo = document.getElementById('preloaderVideo');
+      const preloader = document.getElementById('preloader');
+      const bgAudio = document.getElementById('bg-audio');
+
+      fetch('p_93kdl9mXz.mp4')
+        .then(response => response.blob())
+        .then(blob => {
+          const blobUrl = URL.createObjectURL(blob);
+          preloaderVideo.src = blobUrl;
+          preloaderVideo.play();
+        });
+
+      preloaderVideo.onended = () => {
+        preloader.style.display = 'none';
+        bgAudio.play().catch(e => console.warn('Autoplay prevented:', e));
+      };
+    });
+
+    const sections = document.querySelectorAll('section');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    sections.forEach(section => observer.observe(section));
+  </script>
+</body>
+</html>
