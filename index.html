@@ -4,43 +4,131 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <div id="preloader">
+    <video autoplay muted id="preloaderVideo"></video>
+  </div>
+  <audio id="bg-audio" loop>
+    <source src="background.mp3" type="audio/mpeg">
+  </audio>
+  <button id="audioToggle" onclick="toggleAudio()" title="Toggle Audio">🔈</button>
   <header>
-    <nav>
-      <h1>My Portfolio</h1>
-      <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+    <h1>My Portfolio</h1>
+    <div>
+      <button class="toggle-darkmode" onclick="toggleDarkMode()" title="Toggle dark mode" id="themeToggle">🌙</button>
+      <span class="menu-toggle" onclick="toggleMenu()">☰</span>
+    </div>
+    <nav id="navMenu">
+      <a href="#about" onclick="closeMenu()">About</a>
+      <a href="#projects" onclick="closeMenu()">Projects</a>
+      <a href="#contact" onclick="closeMenu()">Contact</a>
+      <a href="#skills" onclick="closeMenu()">Skills</a>
+      <a href="#certificates" onclick="closeMenu()">Certificates</a>
+      <a href="#timeline" onclick="closeMenu()">Journey</a>
     </nav>
   </header>
 
-  <section id="hero">
+  <section class="hero">
     <h2>Hello, I'm [Your Name]</h2>
-    <p>Web Developer | Designer | Freelancer</p>
+    <p>A passionate developer/designer building beautiful and functional web experiences.</p>
+    <a href="cv.pdf" class="cv-button" download>⬇️ Download CV</a>
   </section>
 
-  <section id="about">
+  <section id="about" class="fade-left">
     <h2>About Me</h2>
-    <p>A brief description about yourself, your skills, and your journey.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris at quam ac tellus placerat pretium. Integer nec odio vel elit feugiat viverra.</p>
   </section>
 
-  <section id="projects">
+  <section id="projects" class="fade-right">
     <h2>Projects</h2>
-    <div class="project">
-      <h3>Project Title</h3>
-      <p>Short description of the project.</p>
-      <a href="#">View Project</a>
+    <div class="projects">
+      <div class="project-card">
+        <h3>Project One</h3>
+        <p>Brief description of the first project goes here.</p>
+        <a href="#">View Project</a>
+      </div>
+      <div class="project-card">
+        <h3>Project Two</h3>
+        <p>Brief description of the second project goes here.</p>
+        <a href="#">View Project</a>
+      </div>
     </div>
   </section>
+  
+  <!-- Skills Section -->
+<section id="skills" class="fade-left">
+  <h2>Skills</h2>
+  <div class="skill">
+    <span>HTML</span>
+    <div class="bar"><div style="width: 90%"></div></div>
+  </div>
+  <div class="skill">
+    <span>CSS</span>
+    <div class="bar"><div style="width: 85%"></div></div>
+  </div>
+  <div class="skill">
+    <span>JavaScript</span>
+    <div class="bar"><div style="width: 75%"></div></div>
+  </div>
+</section>
 
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Email: yourname@example.com</p>
-    <p>LinkedIn: <a href="#">yourprofile</a></p>
+<!-- Certificates Section -->
+<section id="certificates" class="fade-right">
+  <h2>Certificates</h2>
+  <div class="cert-gallery">
+    <img src="cert1.jpg" alt="Certificate 1" />
+    <img src="cert2.jpg" alt="Certificate 2" />
+  </div>
+</section>
+
+<!-- Timeline Section -->
+<section id="timeline" class="fade-left">
+  <h2>My Journey</h2>
+  <ul class="timeline">
+    <li>
+      <h3>2022 - Now</h3>
+      <p>Frontend Developer at PT ABC</p>
+    </li>
+    <li>
+      <h3>2019 - 2022</h3>
+      <p>Computer Science Student at XYZ University</p>
+    </li>
+  </ul>
+</section>
+
+<section id="testimonials" class="fade-left">
+  <h2>Testimonials</h2>
+  <div class="testimonial-slider" ontouchstart="startTouch(event)" ontouchmove="moveTouch(event)">
+    <div class="testimonial-track">
+      <div class="testimonial-card">
+        <p>"Kerja bareng dia menyenangkan! Proyek selesai lebih cepat dari estimasi!"</p>
+        <h4>– Budi Santoso, CEO StartupX</h4>
+      </div>
+      <div class="testimonial-card">
+        <p>"Sangat komunikatif dan hasil kerjanya memuaskan. Pasti repeat order!"</p>
+        <h4>– Lisa Maulani, Freelance Writer</h4>
+      </div>
+      <div class="testimonial-card">
+        <p>"Gaya desainnya unik dan sesuai dengan kebutuhan brand kami."</p>
+        <h4>– Arief R., Creative Director</h4>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <section id="contact" class="contact fade-left">
+    <h2>Contact Me</h2>
+    <p>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
+    <p>GitHub: <a href="#">github.com/yourusername</a></p>
+    <form action="https://formspree.io/f/your-form-id" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" required />
+      <textarea name="message" rows="4" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
   </section>
 
   <footer>
