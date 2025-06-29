@@ -111,23 +111,45 @@
       color: var(--accent);
     }
     .hero {
-      padding: 4rem 2rem;
-      text-align: center;
-      background: var(--bg);
-      color: var(--text);
-      border-radius: 0.75rem;
-      box-shadow: 0 2px 18px rgba(0, 0, 0, 0.05);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .hero h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-    .hero p {
-      font-size: 1rem;
-      max-width: 600px;
-      margin: 0 auto 1rem;
-    }
+  position: relative;
+  background-image: url('img/aizawa.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* gelap agar teks terlihat */
+  z-index: 1;
+}
+
+.hero-text {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: 0 20px;
+}
+
+.hero-text h2 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.hero-text p {
+  font-size: 1.25rem;
+  color: #ddd;
+}
     .cv-button {
       display: inline-block;
       margin-top: 1rem;
