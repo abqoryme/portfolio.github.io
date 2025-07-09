@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=2.0, user-scalable=yes">
   <meta name="theme-color" content="#121212" />
   <title>AbQaris — Portfolio Page</title>
   <link rel="icon" href="https://api.iconify.design/mdi:code-tags.svg" type="image/svg+xml" />
@@ -34,8 +34,8 @@
     a:hover { color: var(--accent); }/* Toggle Button */
 .toggle-btn {
   position: fixed; top: 1rem; right: 1rem;
-  background: none; border: 2px solid var(--primary);
-  padding: .5rem 1rem; cursor: pointer; border-radius: 4px;
+  background: #1e90ff; border: 2px solid var(--primary);
+  padding: .5rem 1rem; cursor: pointer; border-radius: 2px;
   font-family: inherit; transition: background .3s, color .3s;
   z-index: 20;
 }
@@ -108,16 +108,16 @@ footer { margin-top: 3rem; font-size: .85rem; color: var(--secondary); }
     <h1>Hi, I'm <span class="accent tooltip" data-tooltip="That's me, AbQaris!" tabindex="0">AbQaris</span> 🧃</h1>
     <p>A passionate developer who loves building fun and useful things on the web.</p>
     <div class="socials">
-      <a href="https://github.com/abqoryme" target="_blank" class="tooltip" data-tooltip="Visit my GitHub" tabindex="0">GitHub</a>
+      <a href="https://github.com/abqoryme" target="_blank" class="tooltip" data-tooltip="GitHub" tabindex="0">GitHub</a>
       <a href="https://twitter.com/humanxxx00000" target="_blank" class="tooltip" data-tooltip="Follow me on Twitter" tabindex="0">Twitter</a>
       <a href="mailto:wst.abqory@gmail.com" class="tooltip" data-tooltip="Send me an email" tabindex="0">Email</a>
     </div>
   </header> 
 <section class="projects">
     <h2>🛠 Projects</h2>
-    <div class="project-item tooltip" data-tooltip="WA bot for managing a digital store via chat commands." tabindex="0"><strong><a href="https://github.com/abqoryme/CHAT-BOT-AI">AbqoryStoreBotX</a></strong>
+    <div class="project-item tooltip" data-tooltip="Whatsapp bot store via chat commands." tabindex="0"><strong><a href="https://github.com/abqoryme/CHAT-BOT-AI">AbqoryStoreBotX</a></strong>
 </div>
-    <div class="project-item tooltip" data-tooltip="Static ASCII-themed portfolio hosted on GitHub Pages." tabindex="0"><strong><a href="https://aizawa.is-a.dev/portfolio-ascii">AbQaris ASCII Portfolio</a></strong>
+    <div class="project-item tooltip" data-tooltip="ASCII-themed portfolio hosted on GitHub Pages." tabindex="0"><strong><a href="https://aizawa.is-a.dev/portfolio-ascii">AbQaris ASCII Portfolio</a></strong>
 </div>
   </section> 
 <section class="chart-container">
@@ -140,10 +140,10 @@ footer { margin-top: 3rem; font-size: .85rem; color: var(--secondary); }
     new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: ['B.IND', 'B.SUN', 'B.ING', 'HTML', 'CSS', 'JS', 'JAVA'],
+        labels: ['B.IND', 'B.SUN', 'B.ING', 'HTML', 'CSS', 'JS', 'JAVA', 'NODE', 'NEXTJS'],
         datasets: [{
           label: 'Project Activity',
-          data: [90, 60, 50, 40, 60, 40, 10, 50, 10, 60, 50],
+          data: [90, 60, 50, 40, 60, 40, 10, 40, 30, 00, 00],
           backgroundColor: ['rgba(30,144,255,0.7)', 'rgba(255,64,129,0.7)'],
           borderWidth: 1
         }]
