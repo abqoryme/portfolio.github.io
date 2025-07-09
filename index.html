@@ -6,6 +6,11 @@
   <title>Aizawa - Frontend Developer</title>
   <meta name="description" content="Portfolio pribadi Aizawa — Frontend Developer, UI/UX Enthusiast dan Kontributor Open Source.">
   <meta name="theme-color" content="#1d4ed8">
+  <meta property="og:title" content="Aizawa - Frontend Developer">
+  <meta property="og:description" content="Portfolio pribadi Aizawa — Frontend Developer, UI/UX Enthusiast dan Kontributor Open Source.">
+  <meta property="og:image" content="https://aizawa.is-a.dev/assets/preview.png">
+  <meta property="og:url" content="https://aizawa.is-a.dev">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="https://fav.farm/🔥" />
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -14,6 +19,7 @@
   <style>
     html { scroll-behavior: smooth; }
     body { font-family: 'Inter', system-ui, sans-serif; letter-spacing: 0.1px; }
+    section { scroll-margin-top: 6rem; }
     .dark-mode { background-color: #1a202c; color: #f7fafc; }
     .dark-mode a { color: #63b3ed; }
     .dark-mode .bg-gray-100 { background-color: #2d3748; }
@@ -22,6 +28,14 @@
     .dark-mode .text-gray-800,
     .dark-mode .text-gray-500 { color: #e2e8f0; }
     footer { font-size: 0.85rem; opacity: 0.7; }
+    .card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+    .soft-glow {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 20px rgba(255,255,255,0.08);
+    }
   </style>
 </head>
 <body class="bg-white text-gray-800 transition-colors duration-300">
@@ -31,7 +45,7 @@
     <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
       <h1 class="text-xl font-bold">Aizawa</h1>
       <div class="flex items-center space-x-4">
-        <nav class="space-x-4">
+        <nav class="hidden md:block space-x-4">
           <a href="#about" class="hover:underline">Tentang</a>
           <a href="#projects" class="hover:underline">Projek</a>
           <a href="#preview" class="hover:underline">Preview</a>
@@ -40,94 +54,93 @@
           <a href="#testimoni" class="hover:underline">Testimoni</a>
           <a href="#contact" class="hover:underline">Kontak</a>
         </nav>
-        <button id="toggleDark" title="Toggle Dark Mode">
-          <i data-feather="moon"></i>
+        <button id="toggleDark" title="Toggle Dark Mode" class="ml-2">
+          <i id="themeIcon" data-feather="moon"></i>
         </button>
       </div>
     </div>
   </header>
 
   <!-- Hero -->
-  <section class="pt-24 pb-16 text-center" data-aos="fade-up">
-    <h2 class="text-4xl font-bold mb-4">Halo, saya Aizawa 👋</h2>
-    <p class="text-lg text-gray-600 mb-6">Frontend Developer | Open Source Enthusiast</p>
-    <div class="flex justify-center gap-4">
-      <a href="#projects" class="inline-block bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition">Lihat Projek</a>
-      <a href="/assets/cv-aizawa.pdf" download class="inline-block border border-blue-600 text-blue-600 px-6 py-2 rounded hover:bg-blue-600 hover:text-white transition">Download CV</a>
-    </div>
-  </section>
-
-  <!-- Preview Carousel -->
-  <section id="preview" class="py-16 bg-gray-100 dark:bg-gray-800">
-    <div class="max-w-5xl mx-auto px-4">
-      <h3 class="text-2xl font-semibold mb-8 text-center" data-aos="fade-up">Preview Gambar Projek</h3>
-      <div class="swiper rounded shadow-lg" data-aos="fade-up">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <img src="https://placehold.co/600x400/1d4ed8/ffffff?text=Projek+1" class="rounded w-full">
-          </div>
-          <div class="swiper-slide">
-            <img src="https://placehold.co/600x400/059669/ffffff?text=Projek+2" class="rounded w-full">
-          </div>
-          <div class="swiper-slide">
-            <img src="https://placehold.co/600x400/9333ea/ffffff?text=Projek+3" class="rounded w-full">
-          </div>
-        </div>
-        <div class="swiper-pagination mt-4"></div>
+  <section class="pt-28 pb-20 text-center px-4 relative" data-aos="fade-up">
+    <div class="max-w-2xl mx-auto p-8 rounded-xl soft-glow dark:bg-gray-900">
+      <h2 class="text-4xl font-bold mb-4">Halo, saya Aizawa 👋</h2>
+      <p class="text-lg text-gray-600 dark:text-gray-300 mb-6">Frontend Developer | Open Source Enthusiast</p>
+      <div class="flex justify-center flex-wrap gap-4">
+        <a href="#projects" class="inline-block bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition">Lihat Projek</a>
+        <a href="/assets/cv-aizawa.pdf" download class="inline-block border border-blue-600 text-blue-600 px-6 py-2 rounded hover:bg-blue-600 hover:text-white transition">Download CV</a>
       </div>
     </div>
   </section>
 
-  <!-- Sertifikat -->
-  <section id="certificates" class="py-16">
+  <!-- Project Section -->
+  <section id="projects" class="py-16 bg-gray-100 dark:bg-gray-800">
     <div class="max-w-6xl mx-auto px-4">
-      <h3 class="text-2xl font-semibold mb-8 text-center" data-aos="fade-up">Sertifikat & Pengalaman</h3>
-      <div class="grid md:grid-cols-2 gap-6">
-        <div class="bg-white dark:bg-gray-800 rounded shadow p-6 flex items-start space-x-4" data-aos="fade-right">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Firebase_Logo.svg" class="w-12 h-12">
-          <div>
-            <h4 class="font-bold">Google Firebase Bootcamp</h4>
-            <p class="text-sm text-gray-600 dark:text-gray-300">Pelatihan resmi dari Google Developer tentang backend modern.</p>
-          </div>
-        </div>
-        <div class="bg-white dark:bg-gray-800 rounded shadow p-6 flex items-start space-x-4" data-aos="fade-left">
-          <img src="https://cdn.worldvectorlogo.com/logos/freecodecamp.svg" class="w-12 h-12">
-          <div>
-            <h4 class="font-bold">Responsive Web Design Certificate</h4>
-            <p class="text-sm text-gray-600 dark:text-gray-300">300+ jam belajar desain web dari FreeCodeCamp.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Testimoni -->
-  <section id="testimoni" class="py-16 bg-gray-100 dark:bg-gray-800">
-    <div class="max-w-6xl mx-auto px-4">
-      <h3 class="text-2xl font-semibold mb-8 text-center" data-aos="fade-up">Testimoni & Kolaborasi</h3>
+      <h3 class="text-2xl font-semibold mb-8 text-center" data-aos="fade-up">Projek Unggulan</h3>
       <div class="grid md:grid-cols-3 gap-6">
-        <div class="bg-white dark:bg-gray-900 rounded shadow p-6 text-center" data-aos="zoom-in">
-          <img src="https://i.pravatar.cc/100?u=user1" class="w-16 h-16 rounded-full mx-auto mb-4">
-          <p class="text-gray-600 dark:text-gray-300 italic">"Kerja bareng Aizawa tuh enak banget! Desainnya clean, dia juga cepat tanggap."</p>
-          <h4 class="mt-4 font-semibold">— Raka, Web Designer</h4>
+        <div class="bg-white dark:bg-gray-900 rounded card shadow p-6" data-aos="zoom-in">
+          <h4 class="text-lg font-bold mb-2">AbqoryStoreBotX</h4>
+          <p class="text-sm text-gray-600 dark:text-gray-300">Bot marketplace WhatsApp berbasis thumbnail dan QRIS.</p>
         </div>
-        <div class="bg-white dark:bg-gray-900 rounded shadow p-6 text-center" data-aos="zoom-in" data-aos-delay="100">
-          <img src="https://i.pravatar.cc/100?u=user2" class="w-16 h-16 rounded-full mx-auto mb-4">
-          <p class="text-gray-600 dark:text-gray-300 italic">"Profesional dan komunikatif. Ngebantu banget waktu ngerjain dashboard internal."</p>
-          <h4 class="mt-4 font-semibold">— Dita, Product Manager</h4>
+        <div class="bg-white dark:bg-gray-900 rounded card shadow p-6" data-aos="zoom-in" data-aos-delay="100">
+          <h4 class="text-lg font-bold mb-2">Portfolio Tailwind HTML</h4>
+          <p class="text-sm text-gray-600 dark:text-gray-300">Website portfolio statis 100% GitHub Pages friendly dengan dark mode & carousel.</p>
         </div>
-        <div class="bg-white dark:bg-gray-900 rounded shadow p-6 text-center" data-aos="zoom-in" data-aos-delay="200">
-          <img src="https://i.pravatar.cc/100?u=user3" class="w-16 h-16 rounded-full mx-auto mb-4">
-          <p class="text-gray-600 dark:text-gray-300 italic">"Kalau soal frontend, Aizawa jagonya. Di hackathon UI-nya langsung jadi."</p>
-          <h4 class="mt-4 font-semibold">— Bima, Backend Engineer</h4>
+        <div class="bg-white dark:bg-gray-900 rounded card shadow p-6" data-aos="zoom-in" data-aos-delay="200">
+          <h4 class="text-lg font-bold mb-2">Next.js Game Mini</h4>
+          <p class="text-sm text-gray-600 dark:text-gray-300">Game ringan berbasis React dan Tailwind, langsung bisa dimainkan di browser.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog -->
+  <section id="blog" class="py-16">
+    <div class="max-w-6xl mx-auto px-4">
+      <h3 class="text-2xl font-semibold mb-8 text-center" data-aos="fade-up">Tulisan & Blog</h3>
+      <div class="grid md:grid-cols-3 gap-6">
+        <article class="bg-white dark:bg-gray-900 p-6 rounded card shadow" data-aos="fade-up">
+          <h4 class="text-lg font-bold mb-2">Mengapa Tailwind Lebih Cepat Dibanding CSS Framework Lain?</h4>
+          <p class="text-sm text-gray-600 dark:text-gray-300">Pengalaman pribadi setelah pindah ke Tailwind dari Bootstrap dan Bulma. Lebih produktif dan clean.</p>
+          <a href="#" class="mt-4 inline-block text-blue-600 hover:underline">Baca selengkapnya →</a>
+        </article>
+        <article class="bg-white dark:bg-gray-900 p-6 rounded card shadow" data-aos="fade-up" data-aos-delay="100">
+          <h4 class="text-lg font-bold mb-2">Belajar UI dari Clone Website Ternama</h4>
+          <p class="text-sm text-gray-600 dark:text-gray-300">Tips dan proses saat mencoba meng-clone Tokopedia, YouTube, dan lainnya untuk latihan UI/UX.</p>
+          <a href="#" class="mt-4 inline-block text-blue-600 hover:underline">Baca selengkapnya →</a>
+        </article>
+        <article class="bg-white dark:bg-gray-900 p-6 rounded card shadow" data-aos="fade-up" data-aos-delay="200">
+          <h4 class="text-lg font-bold mb-2">5 Plugin VSCode Wajib Buat Frontend Developer</h4>
+          <p class="text-sm text-gray-600 dark:text-gray-300">Daftar plugin yang selalu gue install setiap setup workspace baru, dari Tailwind sampai GitLens.</p>
+          <a href="#" class="mt-4 inline-block text-blue-600 hover:underline">Baca selengkapnya →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kontak -->
+  <section id="contact" class="py-16">
+    <div class="max-w-3xl mx-auto px-4 text-center" data-aos="fade-up">
+      <h3 class="text-2xl font-semibold mb-6">Hubungi Saya</h3>
+      <p class="text-gray-600 dark:text-gray-300 mb-4">Saya selalu terbuka untuk kolaborasi, freelance, atau hanya sekadar diskusi teknologi.</p>
+      <div class="flex justify-center gap-6 mt-6">
+        <a href="https://github.com/yourgithub" target="_blank" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">
+          <i data-feather="github"></i>
+        </a>
+        <a href="https://linkedin.com/in/yourlinkedin" target="_blank" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">
+          <i data-feather="linkedin"></i>
+        </a>
+        <a href="mailto:aizawa@email.com" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">
+          <i data-feather="mail"></i>
+        </a>
       </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="text-center py-6 border-t border-gray-200 dark:border-gray-700 mt-12 text-sm text-gray-600 dark:text-gray-300">
-    Dibuat oleh Aizawa • Powered by Tailwind, Swiper, dan AOS.
+  <footer class="text-center py-8 border-t border-gray-200 dark:border-gray-700 text-sm text-gray-600 dark:text-gray-300 mt-12">
+    Dibuat oleh <a href="https://github.com/yourgithub" class="underline hover:text-blue-600">Aizawa</a> • Powered by TailwindCSS, SwiperJS, dan AOS.<br>
+    &copy; 2025 aizawa.is-a.dev
   </footer>
 
   <!-- Scripts -->
@@ -138,18 +151,34 @@
     feather.replace();
 
     const toggleDark = document.getElementById('toggleDark');
+    const themeIcon = document.getElementById('themeIcon');
     const body = document.body;
-    if (localStorage.getItem('theme') === 'dark') body.classList.add('dark-mode');
+
+    function updateIcon() {
+      themeIcon.setAttribute('data-feather', body.classList.contains('dark-mode') ? 'sun' : 'moon');
+      feather.replace();
+    }
+
+    if (localStorage.getItem('theme') === 'dark') {
+      body.classList.add('dark-mode');
+      updateIcon();
+    }
 
     toggleDark.addEventListener('click', () => {
       body.classList.toggle('dark-mode');
       const mode = body.classList.contains('dark-mode') ? 'dark' : 'light';
       localStorage.setItem('theme', mode);
+      updateIcon();
     });
 
     new Swiper('.swiper', {
       loop: true,
       pagination: { el: '.swiper-pagination', clickable: true },
+    });
+
+    document.querySelectorAll('img').forEach(img => {
+      img.setAttribute('loading', 'lazy');
+      img.setAttribute('decoding', 'async');
     });
   </script>
 </body>
