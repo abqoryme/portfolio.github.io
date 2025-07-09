@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="id">
+<!DOCTYPE html>
+<html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,53 +12,145 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
   <script src="https://unpkg.com/feather-icons"></script>
   <style>
-    html {
-      scroll-behavior: smooth;
-    }
-    body {
-      font-family: 'Inter', system-ui, sans-serif;
-      letter-spacing: 0.1px;
-    }
-    .dark-mode {
-      background-color: #1a202c;
-      color: #f7fafc;
-    }
-    .dark-mode a {
-      color: #63b3ed;
-    }
-    .dark-mode .bg-gray-100 {
-      background-color: #2d3748;
-    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', system-ui, sans-serif; letter-spacing: 0.1px; }
+    .dark-mode { background-color: #1a202c; color: #f7fafc; }
+    .dark-mode a { color: #63b3ed; }
+    .dark-mode .bg-gray-100 { background-color: #2d3748; }
     .dark-mode .text-gray-600,
     .dark-mode .text-gray-700,
     .dark-mode .text-gray-800,
-    .dark-mode .text-gray-500 {
-      color: #e2e8f0;
-    }
-    footer {
-      font-size: 0.85rem;
-      opacity: 0.7;
-    }
+    .dark-mode .text-gray-500 { color: #e2e8f0; }
+    footer { font-size: 0.85rem; opacity: 0.7; }
   </style>
 </head>
-<body class="bg-white text-gray-800 transition-colors duration-300">  <!-- Footer -->  <footer class="text-center py-6 border-t border-gray-200 dark:border-gray-700 mt-12 text-sm text-gray-600 dark:text-gray-300">
-    Dibuat oleh Abqory • Powered by Tailwind, Swiper, dan AOS.
-  </footer>  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>  <script>
+<body class="bg-white text-gray-800 transition-colors duration-300">
+
+  <!-- Navbar -->
+  <header class="fixed top-0 left-0 w-full bg-white dark:bg-gray-900 shadow z-50 transition-colors duration-300">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+      <h1 class="text-xl font-bold">Aizawa</h1>
+      <div class="flex items-center space-x-4">
+        <nav class="space-x-4">
+          <a href="#about" class="hover:underline">Tentang</a>
+          <a href="#projects" class="hover:underline">Projek</a>
+          <a href="#preview" class="hover:underline">Preview</a>
+          <a href="#blog" class="hover:underline">Blog</a>
+          <a href="#certificates" class="hover:underline">Sertifikat</a>
+          <a href="#testimoni" class="hover:underline">Testimoni</a>
+          <a href="#contact" class="hover:underline">Kontak</a>
+        </nav>
+        <button id="toggleDark" title="Toggle Dark Mode">
+          <i data-feather="moon"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="pt-24 pb-16 text-center" data-aos="fade-up">
+    <h2 class="text-4xl font-bold mb-4">Halo, saya Aizawa 👋</h2>
+    <p class="text-lg text-gray-600 mb-6">Frontend Developer | Open Source Enthusiast</p>
+    <div class="flex justify-center gap-4">
+      <a href="#projects" class="inline-block bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition">Lihat Projek</a>
+      <a href="/assets/cv-aizawa.pdf" download class="inline-block border border-blue-600 text-blue-600 px-6 py-2 rounded hover:bg-blue-600 hover:text-white transition">Download CV</a>
+    </div>
+  </section>
+
+  <!-- Preview Carousel -->
+  <section id="preview" class="py-16 bg-gray-100 dark:bg-gray-800">
+    <div class="max-w-5xl mx-auto px-4">
+      <h3 class="text-2xl font-semibold mb-8 text-center" data-aos="fade-up">Preview Gambar Projek</h3>
+      <div class="swiper rounded shadow-lg" data-aos="fade-up">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <img src="https://placehold.co/600x400/1d4ed8/ffffff?text=Projek+1" class="rounded w-full">
+          </div>
+          <div class="swiper-slide">
+            <img src="https://placehold.co/600x400/059669/ffffff?text=Projek+2" class="rounded w-full">
+          </div>
+          <div class="swiper-slide">
+            <img src="https://placehold.co/600x400/9333ea/ffffff?text=Projek+3" class="rounded w-full">
+          </div>
+        </div>
+        <div class="swiper-pagination mt-4"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sertifikat -->
+  <section id="certificates" class="py-16">
+    <div class="max-w-6xl mx-auto px-4">
+      <h3 class="text-2xl font-semibold mb-8 text-center" data-aos="fade-up">Sertifikat & Pengalaman</h3>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-white dark:bg-gray-800 rounded shadow p-6 flex items-start space-x-4" data-aos="fade-right">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Firebase_Logo.svg" class="w-12 h-12">
+          <div>
+            <h4 class="font-bold">Google Firebase Bootcamp</h4>
+            <p class="text-sm text-gray-600 dark:text-gray-300">Pelatihan resmi dari Google Developer tentang backend modern.</p>
+          </div>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded shadow p-6 flex items-start space-x-4" data-aos="fade-left">
+          <img src="https://cdn.worldvectorlogo.com/logos/freecodecamp.svg" class="w-12 h-12">
+          <div>
+            <h4 class="font-bold">Responsive Web Design Certificate</h4>
+            <p class="text-sm text-gray-600 dark:text-gray-300">300+ jam belajar desain web dari FreeCodeCamp.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimoni -->
+  <section id="testimoni" class="py-16 bg-gray-100 dark:bg-gray-800">
+    <div class="max-w-6xl mx-auto px-4">
+      <h3 class="text-2xl font-semibold mb-8 text-center" data-aos="fade-up">Testimoni & Kolaborasi</h3>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-white dark:bg-gray-900 rounded shadow p-6 text-center" data-aos="zoom-in">
+          <img src="https://i.pravatar.cc/100?u=user1" class="w-16 h-16 rounded-full mx-auto mb-4">
+          <p class="text-gray-600 dark:text-gray-300 italic">"Kerja bareng Aizawa tuh enak banget! Desainnya clean, dia juga cepat tanggap."</p>
+          <h4 class="mt-4 font-semibold">— Raka, Web Designer</h4>
+        </div>
+        <div class="bg-white dark:bg-gray-900 rounded shadow p-6 text-center" data-aos="zoom-in" data-aos-delay="100">
+          <img src="https://i.pravatar.cc/100?u=user2" class="w-16 h-16 rounded-full mx-auto mb-4">
+          <p class="text-gray-600 dark:text-gray-300 italic">"Profesional dan komunikatif. Ngebantu banget waktu ngerjain dashboard internal."</p>
+          <h4 class="mt-4 font-semibold">— Dita, Product Manager</h4>
+        </div>
+        <div class="bg-white dark:bg-gray-900 rounded shadow p-6 text-center" data-aos="zoom-in" data-aos-delay="200">
+          <img src="https://i.pravatar.cc/100?u=user3" class="w-16 h-16 rounded-full mx-auto mb-4">
+          <p class="text-gray-600 dark:text-gray-300 italic">"Kalau soal frontend, Aizawa jagonya. Di hackathon UI-nya langsung jadi."</p>
+          <h4 class="mt-4 font-semibold">— Bima, Backend Engineer</h4>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center py-6 border-t border-gray-200 dark:border-gray-700 mt-12 text-sm text-gray-600 dark:text-gray-300">
+    Dibuat oleh Aizawa • Powered by Tailwind, Swiper, dan AOS.
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
     AOS.init();
     feather.replace();
+
     const toggleDark = document.getElementById('toggleDark');
     const body = document.body;
-    if (localStorage.getItem('theme') === 'dark') {
-      body.classList.add('dark-mode');
-    }
+    if (localStorage.getItem('theme') === 'dark') body.classList.add('dark-mode');
+
     toggleDark.addEventListener('click', () => {
       body.classList.toggle('dark-mode');
       const mode = body.classList.contains('dark-mode') ? 'dark' : 'light';
       localStorage.setItem('theme', mode);
     });
+
     new Swiper('.swiper', {
       loop: true,
       pagination: { el: '.swiper-pagination', clickable: true },
     });
-  </script></body>
+  </script>
+</body>
 </html>
