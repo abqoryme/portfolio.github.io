@@ -149,33 +149,27 @@
   <script>
     AOS.init();
     feather.replace();
-
     const toggleDark = document.getElementById('toggleDark');
     const themeIcon = document.getElementById('themeIcon');
     const body = document.body;
-
     function updateIcon() {
       themeIcon.setAttribute('data-feather', body.classList.contains('dark-mode') ? 'sun' : 'moon');
       feather.replace();
     }
-
     if (localStorage.getItem('theme') === 'dark') {
       body.classList.add('dark-mode');
       updateIcon();
     }
-
     toggleDark.addEventListener('click', () => {
       body.classList.toggle('dark-mode');
       const mode = body.classList.contains('dark-mode') ? 'dark' : 'light';
       localStorage.setItem('theme', mode);
       updateIcon();
     });
-
     new Swiper('.swiper', {
       loop: true,
       pagination: { el: '.swiper-pagination', clickable: true },
     });
-
     document.querySelectorAll('img').forEach(img => {
       img.setAttribute('loading', 'lazy');
       img.setAttribute('decoding', 'async');
