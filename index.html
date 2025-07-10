@@ -2,159 +2,89 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=2.0, user-scalable=yes">
-  <meta name="theme-color" content="#121212" />
-  <title>AbQaris — Portfolio Page</title>
-  <link rel="icon" href="https://api.iconify.design/mdi:code-tags.svg" type="image/svg+xml" />
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=0.7, maximum-scale=2.0, user-scalable=yes" />
+  <title>Abq0ry ~ ASCII & neofetch</title>
   <style>
-    :root {
-      --bg: #0f0f0f;
-      --bg-light: #f0f0f0;
-      --text: #fff;
-      --text-light: #111;
-      --primary: #1e90ff;
-      --secondary: #888;
-      --accent: #ff4081;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: 'Fira Code', monospace;
-      background-color: var(--bg);
-      color: var(--text);
+      background-color: #000;
+      color: #00ff00;
+      font-family: 'Courier New', monospace;
+      white-space: pre;
       padding: 2rem;
-      transition: background-color .3s, color .3s;
-      line-height: 1.6;
+      display: flex;
+      flex-wrap: wrap;
     }
-    body.light {
-      background-color: var(--bg-light);
-      color: var(--text-light);
+    .ascii {
+      margin-right: 3rem;
+      color: #00ffff;
     }
-    a { color: var(--primary); text-decoration: none; transition: color .2s; }
-    a:hover { color: var(--accent); }/* Toggle Button */
-.toggle-btn {
-  position: fixed; top: 1rem; right: 1rem;
-  background: #1e90ff; border: 2px solid var(--primary);
-  padding: .5rem 1rem; cursor: pointer; border-radius: 2px;
-  font-family: inherit; transition: background .3s, color .3s;
-  z-index: 20;
-}
-.toggle-btn:hover { background-color: var(--primary); color: #fff; }
-
-/* Typing Effect */
-.ascii {
-  font-size: 0.8rem; color: var(--secondary); white-space: pre;
-  overflow: hidden; border-right: .15em solid var(--accent);
-  width: 30ch;
-  animation: typing 4s steps(30) 1, blink .75s step-end infinite;
-  margin-bottom: 1rem;
-}
-@keyframes typing { from { width: 0 } to { width: 28ch } }
-@keyframes blink { from, to { border-color: transparent } 50% { border-color: var(--accent); } }
-
-/* Accent Glow */
-.accent { color: var(--accent); text-shadow: 0 0 8px var(--accent); }
-
-/* Tooltip Styles */
-.tooltip { position: relative; cursor: help; }
-.tooltip::after,
-.tooltip::before {
-  opacity: 0; visibility: hidden; transition: opacity .3s;
-}
-.tooltip::after {
-  content: attr(data-tooltip);
-  position: absolute; bottom: 125%; left: 50%; transform: translateX(-50%);
-  background: var(--accent); color: #fff; padding: .4rem; border-radius: 4px;
-  white-space: nowrap; z-index: 10;
-}
-.tooltip::before {
-  content: ""; position: absolute; bottom: 115%; left: 50%; transform: translateX(-50%);
-  border-width: 5px; border-style: solid;
-  border-color: var(--accent) transparent transparent transparent;
-  z-index: 10;
-}
-.tooltip:hover::after,
-.tooltip:hover::before,
-.tooltip:focus::after,
-.tooltip:focus::before,
-.tooltip:active::after,
-.tooltip:active::before {
-  opacity: 1; visibility: visible;
-}
-
-header { margin-bottom: 2rem; }
-h1 { font-size: 2rem; margin-bottom: .5rem; }
-p { margin-bottom: 1rem; }
-.socials a { margin-right: 1rem; font-size: 1.1rem; }
-.projects { margin-top: 2rem; }
-.project-item { margin-bottom: 1rem; }
-.chart-container { margin: 2rem 0; max-width: 300px; }
-footer { margin-top: 3rem; font-size: .85rem; color: var(--secondary); }
-
-@media (max-width: 600px) {
-  body { padding: 1rem; }
-  h1 { font-size: 1.5rem; }
-  .ascii { font-size: 0.7rem; width: 30ch; animation: typing 4s steps(30) 1, blink .75s step-end infinite; }
-  .tooltip::after { bottom: 110%; font-size: .75rem; left: 50%; }
-  .chart-container { max-width: 100%; }
-}
-
+    .info {
+      min-width: 250px;
+    }
+    a {
+      color: #00ffff;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .blink {
+      animation: blink 1s steps(2, start) infinite;
+    }
+    @keyframes blink {
+      to {
+        visibility: hidden;
+      }
+    }
   </style>
 </head>
 <body>
-  <button class="toggle-btn" id="modeToggle">Light Mode</button>
-  <header>
-    <div class="ascii">┌─[≪ AbQaris ≫]<br>└──╼ #Welcome to my terminal</div>
-    <h1>Hi, I'm <span class="accent tooltip" data-tooltip="That's me, AbQaris!" tabindex="0">AbQaris</span> 🧃</h1>
-    <p>A passionate developer who loves building fun and useful things on the web.</p>
-    <div class="socials">
-      <a href="https://github.com/abqoryme" target="_blank" class="tooltip" data-tooltip="GitHub" tabindex="0">GitHub</a>
-      <a href="https://twitter.com/humanxxx00000" target="_blank" class="tooltip" data-tooltip="Follow me on Twitter" tabindex="0">Twitter</a>
-      <a href="mailto:wst.abqory@gmail.com" class="tooltip" data-tooltip="Send me an email" tabindex="0">Email</a>
-    </div>
-  </header> 
-<section class="projects">
-    <h2>🛠 Projects</h2>
-    <div class="project-item tooltip" data-tooltip="Whatsapp bot store via chat commands." tabindex="0"><strong><a href="https://github.com/abqoryme/CHAT-BOT-AI">AbqoryStoreBotX</a></strong>
-</div>
-    <div class="project-item tooltip" data-tooltip="ASCII-themed portfolio hosted on GitHub Pages." tabindex="0"><strong><a href="https://aizawa.is-a.dev/portfolio-ascii">AbQaris ASCII Portfolio</a></strong>
-</div>
-  </section> 
-<section class="chart-container">
-    <h2>📊 Skill Chart</h2>
-    <canvas id="miniChart" width="300" height="150"></canvas>
-  </section> 
-<footer>
-    <p>&copy; 2025 AbQaris. Made with <span class="accent">㊙️</span> using HTML.</p>
-  </footer> 
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>  <script>
-    const btn = document.getElementById('modeToggle');
-    btn.addEventListener('click', () => {
-      document.body.classList.toggle('light');
-      btn.textContent = document.body.classList.contains('light') ? 'Dark Mode' : 'Light Mode';
-    });
-    
-    // Mini Chart
-    const ctx = document.getElementById('miniChart').getContext('2d');
-    new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: ['B.IND', 'B.SUN', 'B.ING', 'HTML', 'CSS', 'JS', 'JAVA', 'NODE', 'NEXTJS'],
-        datasets: [{
-          label: 'Project Activity',
-          data: [90, 60, 50, 40, 60, 40, 10, 40, 30, 00, 00],
-          backgroundColor: ['rgba(30,144,255,0.7)', 'rgba(255,64,129,0.7)'],
-          borderWidth: 1
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: true,
-        scales: { y: { beginAtZero: true } },
-        plugins: { legend: { display: false } }
-      }
-    });
-  </script>
+<!-- ASCII Art Placeholder -->
+<div class="ascii">
+<pre>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣀⣀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣴⢾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣦⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣶⡿⣿⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣟⣻⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠤⠨⠧⠤⠄⠀⠀⠀⠀⠀⠀⠀⠀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣯⢿⣷⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣟⣿⣿⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⣿⣿⢿⣷⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣾⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⢠⣴⠤⢠⡔
+⠀⠀⠀⣀⢤⢀⠀⠀⠀⠀⠀⡿⣿⣿⣾⣿⣿⣿⣿⣿⣯⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣾⣿⡇⠀⠀⠀⢀⣀⣤⣀⡻⡌⠁⠀⠀
+⠀⠀⠄⠀⡀⠈⠦⢆⠻⠌⠳⣻⣿⣿⣿⣿⣿⣿⣿⣿⣽⣿⣿⣿⣿⣿⣿⣿⣿⣯⣿⣿⣿⢿⣫⣿⣟⢓⣖⡒⡖⢮⠙⠈⠀⢀⠀⠄⠁⡀
+⠀⠀⠂⠁⡀⠄⠀⣀⣠⡄⠤⣴⣼⣬⣭⣬⣽⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣍⣭⡆⠁⠐⠒⠦⠖⠒⠘⠀⠂⠴⠠⡀
+⠀⠀⠀⠁⠀⠈⠁⠀⠀⠀⠀⠸⣿⠟⣿⣯⣻⣿⣿⢿⣿⣿⡿⡟⠛⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⠒⠈⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⡠⠠⠦⣀⣹⠿⠽⠿⠽⢿⣾⡾⢿⢏⡅⠀⠀⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⠀⠀⠈⠠⢲⣴⣶⣶⣽⣟⣷⠛⠃⠀⠀⠀⠁⢹⡿⣿⣿⣿⣿⣿⠟⠁⠀⣀⠀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠓⢿⣿⣿⣿⢿⣦⣀⠀⡀⢀⣴⣿⣿⣿⣝⣿⠟⠁⢀⣠⡋⠇⠑⠂⠑⠠⠄⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠿⢿⣽⣿⠀⠀⢸⣿⡿⠿⠛⠉⠀⠈⠈⠁⠀⠀⠀⠀⢀⠤⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⠀⢀⡀⠀⠀⠀𝔦𝔱𝔞𝔠𝔥𝔦 𝔵 𝔞𝔟𝔮𝔞𝔯𝔦𝔰⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠈⠐⠆⠀⠀⠀⠀⠀⠀⠤⠔⠒⠊⠉⠙⠋⠉⠀⠀⠀⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⠒⠀⠒⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠰⠁⠀⠀⠀⠀⠀⠀⠠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⡴⠦⠠⠄⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⠚⢉⡉⠀⠄⠀⢀⠀⠁⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀
+      ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</pre>
+</div>
+
+<!-- Neofetch Info -->
+<div class="info">
+<b>user@terminal</b>
+-----------------------
+<b>Alias:</b>        Abq0ry  
+<b>OS:</b>           GitHub Pages (Static)  
+<b>Shell:</b>        HTML + ASCII  
+<b>Editor:</b>       VSCode, QuickEdit  
+<b>Location:</b>     Chinese  
+<b>Languages:</b>    JavaScript, TypeScript, HTML, CSS  
+<b>Focus:</b>        Frontend, Full-stack, CLI UI  
+<b>Website:</b>      <a href="https://aizawa.is-a.dev" target="_blank">aizawa.is-a.dev</a>  
+<b>GitHub:</b>       <a href="https://github.com/abqoryme" target="_blank">@abq0ry</a>  
+<b>Email:</b>        <a href="mailto:wst.abqory@gmail.com">Here</a>    
+<span class="blink">▮</span>
+</div>
 </body>
 </html>
