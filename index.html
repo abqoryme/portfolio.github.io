@@ -2,89 +2,476 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=0.7, maximum-scale=2.0, user-scalable=yes" />
-  <title>Abq0ry ~ ASCII & neofetch</title>
+  <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=2.0, user-scalable=no">
+  <meta name="theme-color" content="#121212" />
+  <title>AbQaris — Portfolio Page</title>
+  <link rel="icon" href="https://api.iconify.design/mdi:code-tags.svg" type="image/svg+xml" />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet" />
   <style>
+    :root {
+      --bg: #0f0f0f;
+      --bg-light: #f0f0f0;
+      --text: #fff;
+      --text-light: #111;
+      --primary: #1e90ff;
+      --secondary: #888;
+      --accent: #ff4081;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      background-color: #000;
-      color: #00ff00;
-      font-family: 'Courier New', monospace;
-      white-space: pre;
+      font-family: 'Fira Code', monospace;
+      background-color: var(--bg);
+      color: var(--text);
       padding: 2rem;
-      display: flex;
-      flex-wrap: wrap;
+      transition: background-color .3s, color .3s;
+      line-height: 1.6;
     }
-    .ascii {
-      margin-right: 3rem;
-      color: #00ffff;
+    body.light {
+      background-color: var(--bg-light);
+      color: var(--text-light);
     }
-    .info {
-      min-width: 250px;
-    }
-    a {
-      color: #00ffff;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    .blink {
-      animation: blink 1s steps(2, start) infinite;
-    }
-    @keyframes blink {
-      to {
-        visibility: hidden;
-      }
-    }
+    a { color: var(--primary); text-decoration: none; transition: color .2s; }
+    a:hover { color: var(--accent); }/* Toggle Button */
+.toggle-btn {
+  position: fixed; top: 1rem; right: 1rem;
+  background: #1e90ff; border: 2px solid var(--primary);
+  padding: .5rem 1rem; cursor: pointer; border-radius: 2px;
+  font-family: inherit; transition: background .3s, color .3s;
+  z-index: 20;
+}
+.toggle-btn:hover { background-color: var(--primary); color: #fff; }
+
+/* Typing Effect */
+.ascii {
+  font-size: 0.8rem; color: var(--secondary); white-space: pre;
+  overflow: hidden; border-right: .15em solid var(--accent);
+  width: 30ch;
+  animation: typing 4s steps(30) 1, blink .75s step-end infinite;
+  margin-bottom: 1rem;
+}
+@keyframes typing { from { width: 0 } to { width: 28ch } }
+@keyframes blink { from, to { border-color: transparent } 50% { border-color: var(--accent); } }
+
+/* Accent Glow */
+.accent { color: var(--accent); text-shadow: 0 0 8px var(--accent); }
+
+/* Tooltip Styles */
+.tooltip { position: relative; cursor: help; }
+.tooltip::after,
+.tooltip::before {
+  opacity: 0; visibility: hidden; transition: opacity .3s;
+}
+.tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute; bottom: 125%; left: 50%; transform: translateX(-50%);
+  background: var(--accent); color: #fff; padding: .4rem; border-radius: 4px;
+  white-space: nowrap; z-index: 10;
+}
+.tooltip::before {
+  content: ""; position: absolute; bottom: 115%; left: 50%; transform: translateX(-50%);
+  border-width: 5px; border-style: solid;
+  border-color: var(--accent) transparent transparent transparent;
+  z-index: 10;
+}
+.tooltip:hover::after,
+.tooltip:hover::before,
+.tooltip:focus::after,
+.tooltip:focus::before,
+.tooltip:active::after,
+.tooltip:active::before {
+  opacity: 1; visibility: visible;
+}
+
+header { margin-bottom: 2rem; }
+h1 { font-size: 2rem; margin-bottom: .5rem; }
+p { margin-bottom: 1rem; }
+.socials a { margin-right: 1rem; font-size: 1.1rem; }
+.projects { margin-top: 2rem; }
+.project-item { margin-bottom: 1rem; }
+.chart-container { margin: 2rem 0; max-width: 300px; }
+footer { margin-top: 3rem; font-size: .85rem; color: var(--secondary); }
+
+@media (max-width: 600px) {
+  body { padding: 1rem; }
+  h1 { font-size: 1.5rem; }
+  .ascii { font-size: 0.7rem; width: 30ch; animation: typing 4s steps(30) 1, blink .75s step-end infinite; }
+  .tooltip::after { bottom: 110%; font-size: .75rem; left: 50%; }
+  .chart-container { max-width: 100%; }
+}
+
+#nowPlaying {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.4rem 0.8rem;
+    background: rgba(30,144,255,0.1);
+    color: #1e90ff;
+    border-radius: 4px;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.9rem;
+    margin: 1rem 0;
+  }
+  #nowPlaying .icon {
+    margin-right: 0.5rem;
+    animation: spin 4s linear infinite;
+  }
+  @keyframes spin {
+    from { transform: rotate(0deg) }
+    to   { transform: rotate(360deg) }
+  }
+  
+  .lang-switch {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Fira Code', monospace;
+    z-index: 20;
+  }
+  
+  #locTime {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.8rem;
+    background: rgba(255,64,129,0.1);
+    color: #ff4081;
+    border-radius: 4px;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.9rem;
+    margin: 1rem 0;
+  }
+  #locTime .icon {
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%,100% { transform: scale(1) }
+    50%     { transform: scale(1.1) }
+  }
+  
+  #fakeTerminal {
+    background: #000;
+    color: #0f0;
+    font-family: 'Courier New', monospace;
+    padding: 1rem;
+    border-radius: 6px;
+    max-width: 600px;
+    margin: 2rem auto;
+    box-shadow: 0 0 10px rgba(0,255,0,0.2);
+    overflow-y: auto;
+    max-height: 400px;
+  }
+  .line {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.2rem;
+  }
+  .prompt {
+    margin-right: .5rem;
+  }
+  .input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: #0f0;
+    font-family: inherit;
+    font-size: 1rem;
+    outline: none;
+  }
+  .output {
+    margin-left: 1.5rem;
+    color: #fff;
+    margin-bottom: 0.2rem;
+  }
+   .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  .project-card {
+    background: rgba(255,255,255,0.05);
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+  .project-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+  }
+  .project-card h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    color: var(--accent);
+  }
+  .project-card p {
+    font-size: 0.9rem;
+    color: var(--secondary);
+  }
+  html {
+  -webkit-text-size-adjust: none !important;
+  text-size-adjust: none !important;
+  }
+
   </style>
 </head>
 <body>
-
-<!-- ASCII Art Placeholder -->
-<div class="ascii">
-<pre>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣀⣀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣴⢾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣦⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣶⡿⣿⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣟⣻⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠤⠨⠧⠤⠄⠀⠀⠀⠀⠀⠀⠀⠀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣯⢿⣷⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣟⣿⣿⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⣿⣿⢿⣷⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣾⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⢠⣴⠤⢠⡔
-⠀⠀⠀⣀⢤⢀⠀⠀⠀⠀⠀⡿⣿⣿⣾⣿⣿⣿⣿⣿⣯⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣾⣿⡇⠀⠀⠀⢀⣀⣤⣀⡻⡌⠁⠀⠀
-⠀⠀⠄⠀⡀⠈⠦⢆⠻⠌⠳⣻⣿⣿⣿⣿⣿⣿⣿⣿⣽⣿⣿⣿⣿⣿⣿⣿⣿⣯⣿⣿⣿⢿⣫⣿⣟⢓⣖⡒⡖⢮⠙⠈⠀⢀⠀⠄⠁⡀
-⠀⠀⠂⠁⡀⠄⠀⣀⣠⡄⠤⣴⣼⣬⣭⣬⣽⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣍⣭⡆⠁⠐⠒⠦⠖⠒⠘⠀⠂⠴⠠⡀
-⠀⠀⠀⠁⠀⠈⠁⠀⠀⠀⠀⠸⣿⠟⣿⣯⣻⣿⣿⢿⣿⣿⡿⡟⠛⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⠒⠈⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⡠⠠⠦⣀⣹⠿⠽⠿⠽⢿⣾⡾⢿⢏⡅⠀⠀⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⠀⠀⠈⠠⢲⣴⣶⣶⣽⣟⣷⠛⠃⠀⠀⠀⠁⢹⡿⣿⣿⣿⣿⣿⠟⠁⠀⣀⠀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠓⢿⣿⣿⣿⢿⣦⣀⠀⡀⢀⣴⣿⣿⣿⣝⣿⠟⠁⢀⣠⡋⠇⠑⠂⠑⠠⠄⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠿⢿⣽⣿⠀⠀⢸⣿⡿⠿⠛⠉⠀⠈⠈⠁⠀⠀⠀⠀⢀⠤⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⠀⢀⡀⠀⠀⠀𝔦𝔱𝔞𝔠𝔥𝔦 𝔵 𝔞𝔟𝔮𝔞𝔯𝔦𝔰⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠈⠐⠆⠀⠀⠀⠀⠀⠀⠤⠔⠒⠊⠉⠙⠋⠉⠀⠀⠀⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⠒⠀⠒⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠰⠁⠀⠀⠀⠀⠀⠀⠠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⡴⠦⠠⠄⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⠚⢉⡉⠀⠄⠀⢀⠀⠁⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀
-      ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</pre>
+  <button class="toggle-btn" id="modeToggle">Light Mode</button>
+  <button class="lang-switch" id="langToggle">ID</button>
+  <header>
+    <div class="ascii">┌─[≪ AbQaris ≫]<br>└──╼ <span data-i18n="welcome">#Welcome to my terminal</span></div>
+    <h1><span data-i18n="greeting">Hi, I'm</span>
+<span class="accent tooltip" data-tooltip="That's me, AbQaris!" tabindex="0">AbQaris</span> 🧃</h1>
+    <p data-i18n="description">A passionate developer who loves building fun and useful things on the web.</p>
+    <div class="socials">
+      <a href="https://github.com/abqoryme" target="_blank" class="tooltip" data-tooltip="GitHub" tabindex="0">GitHub</a>
+      <a href="https://twitter.com/humanxxx00000" target="_blank" class="tooltip" data-tooltip="Follow me on Twitter" tabindex="0">Twitter</a>
+      <a href="mailto:wst.abqory@gmail.com" class="tooltip" data-tooltip="Send me an email" tabindex="0">Email</a>
+    </div>
+  </header> 
+<section class="projects">
+  <h2 data-i18n="projects">🛠 Projects</h2>
+  <div class="projects-grid">
+    <div class="project-card tooltip" data-tooltip="Chatbot for store management" tabindex="0">
+      <h3>StoreBotX
+Rebuild</h3>
+      <p data-i18n="bot">WhatsApp bot for store management via chat commands.</p>
+</div>
+<div class="project-card tooltip" data-tooltip="ASCII-themed portfolio" tabindex="0">
+  <h3>AbQaris ASCII Portfolio</h3>
+  <p data-i18n="asci">Static website with ASCII style, hosted on GitHub Pages.</p>
+</div>
+<div class="project-card tooltip" data-tooltip="Cyber & anime portfolio" tabindex="0">
+  <h3>Cyber & Anime Portfolio</h3>
+  <p data-i18n="cyber">Cyber-themed website with a touch of anime, hosted on Vercel.</p>
+    </div>
+    <!-- Tambah card lain di sini -->
+  </div>
+</section>
+<section class="chart-container">
+    <h2 data-i18n="skills">📊 Skill Chart</h2>
+    <canvas id="miniChart" width="300" height="150"></canvas>
+  </section> 
+  <div id="nowPlaying">
+  <span class="icon">🎧</span>
+  <span id="nowPlayingText">Loading...</span>
 </div>
 
-<!-- Neofetch Info -->
-<div class="info">
-<b>user@terminal</b>
------------------------
-<b>Alias:</b>        Abq0ry  
-<b>OS:</b>           GitHub Pages (Static)  
-<b>Shell:</b>        HTML + ASCII  
-<b>Editor:</b>       VSCode, QuickEdit  
-<b>Location:</b>     Chinese  
-<b>Languages:</b>    JavaScript, TypeScript, HTML, CSS  
-<b>Focus:</b>        Frontend, Full-stack, CLI UI  
-<b>Website:</b>      <a href="https://aizawa.is-a.dev" target="_blank">aizawa.is-a.dev</a>  
-<b>GitHub:</b>       <a href="https://github.com/abqoryme" target="_blank">@abq0ry</a>  
-<b>Email:</b>        <a href="mailto:wst.abqory@gmail.com">Here</a>    
-<span class="blink">▮</span>
+<div id="fakeTerminal"></div>
+
+<div id="locTime">
+  <span class="icon">📍</span>
+  <span id="locationText">Detecting location...</span>
+  <span class="icon">🕒</span>
+  <span id="timeText">--:--:--</span>
 </div>
+<footer>
+    <p>&copy; 2025 AbQaris. Made with <span class="accent">㊙️</span> using HTML.</p>
+  </footer> 
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
+<script>
+    const btn = document.getElementById('modeToggle');
+    btn.addEventListener('click', () => {
+      document.body.classList.toggle('light');
+      btn.textContent = document.body.classList.contains('light') ? 'Dark Mode' : 'Light Mode';
+    });
+    
+    // Mini Chart
+    const ctx = document.getElementById('miniChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['B.IND', 'B.SUN', 'B.ING', 'HTML', 'CSS', 'JS', 'JAVA', 'NODE', 'NEXTJS'],
+        datasets: [{
+          label: 'Project Activity',
+          data: [90, 60, 50, 40, 60, 40, 10, 40, 30, 00, 00],
+          backgroundColor: ['rgba(30,144,255,0.7)', 'rgba(255,64,129,0.7)'],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        scales: { y: { beginAtZero: true } },
+        plugins: { legend: { display: false } }
+      }
+    });
+    
+    /**
+   * Panggil fungsi ini untuk update widget.
+   * @param {string} track  - judul lagu
+   * @param {string} artist - nama artist
+   */
+  function updateNowPlaying(track, artist) {
+    const el = document.getElementById('nowPlayingText');
+    el.textContent = `${track} — ${artist}`;
+  }
+
+  // Inisialisasi statis:
+  updateNowPlaying('Lo-fi Chill The Moon 🌑', 'Various Artists Erere');
+
+  // Atau kalau mau fetch dari API, panggil updateNowPlaying di callback fetch.
+  
+   // Kamus terjemahan
+  const translations = {
+    en: {
+      welcome: "#Welcome to my terminal",
+      greeting: "Hi, I'm",
+      description: "A passionate developer who loves building fun and useful things on the web.",
+      projects: "🛠 Projects",
+      skills: "📊 Skills Chart",
+      bot: "WhatsApp bot for store management via chat commands.",
+      asci: "Static website with ASCII style, hosted on GitHub Pages.",
+      cyber: "Cyber-themed website with a touch of anime, hosted on Vercel.",
+      // ...tambahkan key lain sesuai needs
+    },
+    id: {
+      welcome: "#Selamat datang di shell",
+      greeting: "Halo, saya",
+      description: "Seorang developer yang senang membuat hal seru dan berguna di web.",
+      projects: "🛠 Proyek",
+      skills: "📊 Grafik Keahlian",
+      bot: "WhatsApp bot untuk manajemen toko via chat commands.",
+      asci: "Website statis bergaya ASCII, di-host di GitHub Pages.",
+      cyber: "Website cyber dengan sedikit unsur anime, di-host di Vercel.",
+      // ...tambahkan key lain sesuai needs
+    }
+  };
+
+  // State bahasa awal
+  let currentLang = 'en';
+
+  // Fungsi apply translation
+  function applyTranslations() {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      el.textContent = translations[currentLang][key] || el.textContent;
+    });
+    document.getElementById('langToggle').textContent = currentLang.toUpperCase() === 'EN' ? 'ID' : 'EN';
+  }
+
+  // Event listener tombol
+  document.getElementById('langToggle').addEventListener('click', () => {
+    currentLang = currentLang === 'en' ? 'id' : 'en';
+    applyTranslations();
+  });
+
+  // Inisialisasi pertama translate
+  applyTranslations();
+  
+  // Utility untuk format 2-digit
+  function pad(v) { return v.toString().padStart(2, '0'); }
+
+  // Update jam setiap detik
+  function startClock() {
+    const tEl = document.getElementById('timeText');
+    setInterval(() => {
+      const d = new Date();
+      tEl.textContent = 
+        pad(d.getHours()) + ':' + pad(d.getMinutes()) + ':' + pad(d.getSeconds());
+    }, 1000);
+  }
+
+  // Fetch lokasi via ipapi.co (gratis, no API key)
+  function fetchLocation() {
+    fetch('https://ipapi.co/json/')
+      .then(res => res.json())
+      .then(data => {
+        const loc = `${data.city}, ${data.region}, ${data.country_name}`;
+        document.getElementById('locationText').textContent = loc;
+      })
+      .catch(() => {
+        document.getElementById('locationText').textContent = 'Location unavailable';
+      });
+  }
+
+  // Inisialisasi
+  startClock();
+  fetchLocation();
+  
+  //Fake shell amazing 🖥️
+  const term = document.getElementById('fakeTerminal');
+
+  // Command function handler
+  const commands = {
+    whoami: () => 'abqaris',
+    pwd: () => '/home/abqaris',
+    ls: () => 'projects  blog.html  index.html',
+    'siapa abqaris': () => {
+return 'Hai,Saya (assiten_ai). ini adalah sedikit informasi mengenai owner saya.\nabqaris atau (abqory) adalah seorang pemuda yang cukup baik dan selalu semangat belajar terhadap hal baru ia sangat tampan, namun ia anak yang lumayan pendiam. Dalam beberapa tahun terakhir ini ia belum memiliki seorang kekasih entah mengapa, tapi kalau misal ada yang mau deketin abqaris saran saya (assisten_ai) adalah jangan terburu-buru dia lebih suka seseorang yang tenang..🤖';
+},
+    help: () => 'Commands: whoami, pwd, ls, echo, help, clear, social, :q',
+    clear: () => {
+      // Hapus semua elemen kecuali baris input terakhir
+      [...term.querySelectorAll('.line, .output')].forEach(el => el.remove());
+      return null; // tidak tampilkan output
+    },
+    social: () => {
+      return `GitHub: https://github.com/abqoryme\n
+Instagram: https://bit.ly/abqoryme4\n
+X: https://x.com/humanxxx00000`;
+    },
+    ':q': () => {
+      return '👋 You have exited the terminal. (But not really...)';
+    }
+  };
+
+  function createInputLine() {
+    const line = document.createElement('div');
+    line.classList.add('line');
+    line.innerHTML = `
+      <span class="prompt">abqaris@terminal:$</span>
+      <input type="text" class="input" autocomplete="off" autofocus placeholder="Type a command..." />
+    `;
+    term.appendChild(line);
+    const inputEl = line.querySelector('.input');
+    inputEl.focus();
+
+    inputEl.addEventListener('keydown', e => {
+      if (e.key !== 'Enter') return;
+      const cmd = inputEl.value.trim();
+      if (!cmd) return;
+
+      // Ganti input dengan teks statis
+      const staticText = document.createElement('span');
+      staticText.textContent = cmd;
+      staticText.classList.add('input');
+      line.replaceChild(staticText, inputEl);
+
+      // Proses command
+      let output = '';
+      if (cmd.startsWith('echo ')) {
+        output = cmd.slice(5).replace(/^["']|["']$/g, '');
+      } else if (commands[cmd]) {
+        const result = commands[cmd]();
+        if (result !== null) output = result;
+      } else {
+        output = `${cmd}: command not found`;
+      }
+
+      // Tampilkan output kalau ada
+      if (output) {
+        const outEl = document.createElement('div');
+        outEl.classList.add('output');
+        outEl.textContent = output;
+        term.appendChild(outEl);
+      }
+
+      // Scroll dan buat input baru
+      term.scrollTop = term.scrollHeight;
+      createInputLine();
+    });
+  }
+
+  // Start terminal
+  createInputLine();
+  </script>
 </body>
 </html>
