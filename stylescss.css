@@ -1,0 +1,240 @@
+    :root {
+      --bg: #0f0f0f;
+      --bg-light: #f0f0f0;
+      --text: #fff;
+      --text-light: #111;
+      --primary: #1e90ff;
+      --secondary: #888;
+      --accent: #ff4081;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Fira Code', monospace;
+      background-color: var(--bg);
+      color: var(--text);
+      padding: 2rem;
+      transition: background-color .3s, color .3s;
+      line-height: 1.6;
+    }
+    body.light {
+      background-color: var(--bg-light);
+      color: var(--text-light);
+    }
+    a { color: var(--primary); text-decoration: none; transition: color .2s; }
+    a:hover { color: var(--accent); }/* Toggle Button */
+.toggle-btn {
+  position: fixed; top: 1rem; right: 1rem;
+  background: #1e90ff; border: 2px solid var(--primary);
+  padding: .5rem 1rem; cursor: pointer; border-radius: 2px;
+  font-family: inherit; transition: background .3s, color .3s;
+  z-index: 20;
+}
+.toggle-btn:hover { background-color: var(--primary); color: #fff; }
+
+/* Typing Effect */
+.ascii {
+  font-size: 0.8rem; color: var(--secondary); white-space: pre;
+  overflow: hidden; border-right: .15em solid var(--accent);
+  width: 30ch;
+  animation: typing 4s steps(30) 1, blink .75s step-end infinite;
+  margin-bottom: 1rem;
+}
+@keyframes typing { from { width: 0 } to { width: 28ch } }
+@keyframes blink { from, to { border-color: transparent } 50% { border-color: var(--accent); } }
+
+/* Accent Glow */
+.accent { color: var(--accent); text-shadow: 0 0 8px var(--accent); }
+
+/* Tooltip Styles */
+.tooltip { position: relative; cursor: help; }
+.tooltip::after,
+.tooltip::before {
+  opacity: 0; visibility: hidden; transition: opacity .3s;
+}
+.tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute; bottom: 125%; left: 50%; transform: translateX(-50%);
+  background: var(--accent); color: #fff; padding: .4rem; border-radius: 4px;
+  white-space: nowrap; z-index: 10;
+}
+.tooltip::before {
+  content: ""; position: absolute; bottom: 115%; left: 50%; transform: translateX(-50%);
+  border-width: 5px; border-style: solid;
+  border-color: var(--accent) transparent transparent transparent;
+  z-index: 10;
+}
+.tooltip:hover::after,
+.tooltip:hover::before,
+.tooltip:focus::after,
+.tooltip:focus::before,
+.tooltip:active::after,
+.tooltip:active::before {
+  opacity: 1; visibility: visible;
+}
+
+header { margin-bottom: 2rem; }
+h1 { font-size: 2rem; margin-bottom: .5rem; }
+p { margin-bottom: 1rem; }
+.socials a { margin-right: 1rem; font-size: 1.1rem; }
+.projects { margin-top: 2rem; }
+.project-item { margin-bottom: 1rem; }
+.chart-container { margin: 2rem 0; max-width: 300px; }
+footer { margin-top: 3rem; font-size: .85rem; color: var(--secondary); }
+
+@media (max-width: 600px) {
+  body { padding: 1rem; }
+  h1 { font-size: 1.5rem; }
+  .ascii { font-size: 0.7rem; width: 30ch; animation: typing 4s steps(30) 1, blink .75s step-end infinite; }
+  .tooltip::after { bottom: 110%; font-size: .75rem; left: 50%; }
+  .chart-container { max-width: 100%; }
+}
+
+#nowPlaying {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.4rem 0.8rem;
+    background: rgba(30,144,255,0.1);
+    color: #1e90ff;
+    border-radius: 4px;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.9rem;
+    margin: 1rem 0;
+  }
+  #nowPlaying .icon {
+    margin-right: 0.5rem;
+    animation: spin 4s linear infinite;
+  }
+  @keyframes spin {
+    from { transform: rotate(0deg) }
+    to   { transform: rotate(360deg) }
+  }
+  
+  .lang-switch {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Fira Code', monospace;
+    z-index: 20;
+  }
+  
+  #locTime {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.8rem;
+    background: rgba(255,64,129,0.1);
+    color: #ff4081;
+    border-radius: 4px;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.9rem;
+    margin: 1rem 0;
+  }
+  #locTime .icon {
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%,100% { transform: scale(1) }
+    50%     { transform: scale(1.1) }
+  }
+  
+  #fakeTerminal {
+    background: #000;
+    color: #0f0;
+    font-family: 'Courier New', monospace;
+    padding: 1rem;
+    border-radius: 6px;
+    max-width: 600px;
+    margin: 2rem auto;
+    box-shadow: 0 0 10px rgba(0,255,0,0.2);
+    overflow-y: auto;
+    max-height: 400px;
+  }
+  .line {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.2rem;
+  }
+  .prompt {
+    margin-right: .5rem;
+  }
+  .input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: #0f0;
+    font-family: inherit;
+    font-size: 1rem;
+    outline: none;
+  }
+  .output {
+    margin-left: 1.5rem;
+    color: #fff;
+    margin-bottom: 0.2rem;
+  }
+   .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  .project-card {
+    background: rgba(255,255,255,0.05);
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+  .project-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+  }
+  .project-card h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    color: var(--accent);
+  }
+  .project-card p {
+    font-size: 0.9rem;
+    color: var(--secondary);
+  }
+  html {
+  -webkit-text-size-adjust: none !important;
+  text-size-adjust: none !important;
+  }
+
+/* VIEW BUTTON */
+.view-btn {
+  display: inline-block;
+  margin-top: 0.75rem;
+  padding: 0.4rem 0.8rem;
+  background: #000;
+  color: #fff;
+  font-size: 0.85rem;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s;
+  position: relative;  /* untuk tooltip */
+}
+
+.view-btn:hover,
+.view-btn:focus {
+  background: var(--accent);
+  transform: translateY(-2px);
+  color: #fff;
+}
+
+/* Tooltip for view button (reuses same tooltip styles) */
+.view-btn.tooltip {
+  cursor: pointer;
+}
+.view-btn.tooltip::after,
+.view-btn.tooltip::before {
+  /* sudah di-define di .tooltip CSS */
+}
